@@ -1,3 +1,6 @@
+
+//  S/20/426
+
 public class QueueCenter {
     Vehicle front;
     Vehicle rear;
@@ -12,8 +15,8 @@ public class QueueCenter {
             Vehicle temp_vehicle=this.front;
             int i=0;
             while(temp_vehicle!=null){
-                if(temp_vehicle.vehicleNumber==vehicleNumber){
-                    System.out.println("Number of Vehicles :"+i);
+                if(temp_vehicle.vehicleNumber.equals(vehicleNumber)){
+                    System.out.println("Number of Vehicles :"+(i-1));
                     return;
                 }
                 temp_vehicle=temp_vehicle.next;
@@ -31,8 +34,28 @@ public class QueueCenter {
             this.rear=vehicle;
         }
     }
-    public void exitService(){
+    public void exitService(String number){
+        Vehicle currentVehicle=this.front;
+        if(currentVehicle!=null && currentVehicle.vehicleNumber.equals(number)){
+            this.front=currentVehicle.next;
+            System.out.println("success");
 
+        }
+        Vehicle temp=currentVehicle.next;
+        while(temp!=null){
+            if(temp.vehicleNumber.equals(number)){
+                System.out.println("Vehicle with VIN " + number+ " exited the service center.");
+            }
+            temp=temp.next;
+        }
+    }
+
+    public void showQueue(){
+        Vehicle vehicle=this.front;
+        while(vehicle!=null){
+            System.out.println("VIN-"+vehicle.vehicleNumber+"\n"+"Vehicle Type-"+vehicle.type+"\n"+"Service Type-"+vehicle.service+"\n");
+            vehicle=vehicle.next;
+        }
     }
 
 
